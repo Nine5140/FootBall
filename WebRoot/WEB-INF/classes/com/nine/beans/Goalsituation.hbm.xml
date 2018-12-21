@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+	<class name="com.nine.beans.Goalsituation" table="goalsituation" catalog="football">
+		<id name="id" type="int">
+			<column name="id" length="20" />
+			<generator class="native" />
+		</id>
+		<property name="matchsession" type="string">
+			<column name="matchsession" length="20" />
+		</property>
+		<property name="playername" type="string">
+			<column name="playername" length="20" />
+		</property>
+		<property name="goaldate" type="string">
+			<column name="goaldate" length="20" />
+		</property>
+		<property name="goaltime" type="string">
+			<column name="goaltime" length="20" />
+		</property>
+		<property name="way" type="string">
+			<column name="way" length="20" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

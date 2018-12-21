@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/football?useUnicode=true&amp;characterEncoding=utf-8">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="1234"></property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<!-- 根据持久化对象自动创建表 -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<!-- 在控制台输出数据库语句 -->
+				<!-- <prop key="hibernate.show_sql">ture</prop> -->
+				<prop key="hibernate.format_sql">ture</prop>
+			</props>
+		</property>
+		<!-- 对应的持久化对象 -->
+		<property name="mappingResources">
+			<list>
+				<value>com/nine/beans/User.hbm.xml</value>
+				<value>com/nine/beans/Team.hbm.xml</value>
+				<value>com/nine/beans/Player.hbm.xml</value>
+				<value>com/nine/beans/March.hbm.xml</value>
+				<value>com/nine/beans/Goalsituation.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 根据Struts传来的Class值去找对应的Action -->
+	<bean id="LoginAction" class="com.nine.action.LoginAction">
+		<property name="userService" ref="userService" />
+	</bean>
+	<bean id="userService" class="com.nine.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao" />
+	</bean>
+	<bean id="userDao" class="com.nine.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="teamAction" class="com.nine.action.TeamAction">
+		<property name="teamService" ref="teamService" />
+	</bean>
+	<bean id="teamService" class="com.nine.service.impl.TeamServiceImpl">
+		<property name="teamDao" ref="teamDao" />
+	</bean>
+	<bean id="teamDao" class="com.nine.dao.impl.TeamDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="playerAction" class="com.nine.action.PlayerAction">
+		<property name="playerService" ref="playerService" />
+		<property name="teamService" ref="teamService" />
+	</bean>
+	<bean id="playerService" class="com.nine.service.impl.PlayerServiceImpl">
+		<property name="playerDao" ref="playerDao" />
+	</bean>
+	<bean id="playerDao" class="com.nine.dao.impl.PlayerDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="marchAction" class="com.nine.action.MarchAction">
+		<property name="marchService" ref="marchService"></property>
+	</bean>
+	<bean id="marchService" class="com.nine.service.impl.MarchServiceImpl">
+		<property name="marchDao" ref="marchDao"></property>
+	</bean>
+	<bean id="marchDao" class="com.nine.dao.impl.MarchDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="goalsituationAction" class="com.nine.action.GoalsituationAction">
+		<property name="goalsituationService" ref="goalsituationService"></property>
+	</bean>
+	<bean id="goalsituationService" class="com.nine.service.impl.GoalsituationServiceImpl">
+		<property name="goalsituationDao" ref="goalsituationDao"></property>
+	</bean>
+	<bean id="goalsituationDao" class="com.nine.dao.impl.GoalsituationDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+</beans>

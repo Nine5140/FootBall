@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="Football" extends="struts-default">
+		<!-- 页面的表单action传来的值找对应的action -->
+		<action name="loginAction" class="LoginAction" method="login">
+			<result name="success">/login/main.jsp</result>
+			<result name="error">index.jsp</result>
+		</action>
+		<action name="insertTeam" class="teamAction" method="insertTeam">
+			<result name="success">/team/insertTeam.jsp</result>
+			<result name="error">/team/insertTeam.jsp</result>
+		</action>
+		<action name="saveUI" class="teamAction" method="saveUI">
+			<result name="saveUI">/player/insertPlayer.jsp</result>
+		</action>
+		<action name="insertPlayer" class="playerAction" method="insertPlayer">
+			<result name="success">/player/insertSuccess.jsp</result>
+		</action>
+		<action name="selectPlayerAll" class="playerAction" method="selectPlayerAll">
+			<result name="success">/player/selectPlayerAll.jsp</result>
+		</action>
+		<action name="selectPlayer" class="playerAction" method="selectPlayer">
+			<result name="success">/player/editPlayer.jsp</result>
+		</action>
+		<action name="updatePlayer" class="playerAction" method="updatePlayer">
+			<result name="success">/player/insertSuccess.jsp</result>
+		</action>
+		<action name="deletePlayer" class="playerAction" method="deletePlayer">
+			<result name="success" >/player/insertSuccess.jsp</result>
+		</action>
+		
+		
+		<action name="insertMarch" class="marchAction" method="insertMarch">
+			<result name="success">/player/insertSuccess.jsp</result>
+		</action>
+		<action name="selectMarchAll" class="marchAction" method="selectMarchAll">
+			<result name="success">/march/selectMarchAll.jsp</result>
+		</action>
+		<action name="selectMarch" class="marchAction" method="selectMarch">
+			<result name="success">/march/selectMarch.jsp</result>
+		</action>
+		<action name="selectityMarch" class="marchAction" method="selectityMarch">
+			<result name="success">/march/selectMarchSuccess.jsp</result>
+		</action>
+		<action name="selectityMarchj" class="marchAction" method="selectityMarchj">
+			<result name="success">/march/selectMarchSuccesss.jsp</result>
+		</action>
+		<action name="updateMarch" class="marchAction" method="updateMarch">
+			<result name="success" type="redirectAction">selectMarchAll</result>
+		</action>
+		<action name="deleteMarch" class="marchAction" method="deleteMarch">
+			<result name="success" type="redirectAction">selectMarchAll</result>
+		</action>
+		
+		<action name="selectTeam" class="teamAction" method="selectAll">
+			<result name="success">/team/selectTeam.jsp</result>
+		</action>
+		
+		<action name="selectityTeam" class="teamAction" method="selectityTeam">
+			<result name="success">/team/selectsuccess.jsp</result>
+		</action>
+		<action name="updateTeam" class="teamAction" method="updateTeam">
+			<result name="success" type="redirectAction">selectTeam</result>
+		</action>
+		
+		<action name="deleteTeam" class="teamAction" method="deleteTeam">
+			<result name="success" type="redirectAction">selectTeam</result>
+		</action>
+		
+		<action name="insertGoalsituation" class="goalsituationAction" method="insertGoalsituation">
+			<result name="success" >/player/insertSuccess.jsp</result>
+		</action>
+		<action name="selectGoalsituationAll" class="goalsituationAction" method="selectGoalsituationAll">
+			<result name="success">/goalsituation/selectGoalsituationAll.jsp</result>
+		</action>
+		<action name="selectityGoalsituation" class="goalsituationAction" method="selectityGoalsituation">
+			<result name="success">/goalsituation/selectGoalsituationSuccess.jsp</result>
+		</action>
+		<action name="updateGoalsituation" class="goalsituationAction" method="updateGoalsituation">
+			<result name="success" type="redirectAction">selectGoalsituationAll</result>
+		</action>
+		<action name="deleteGoalsituation" class="goalsituationAction" method="deleteGoalsituation">
+			<result name="success" type="redirectAction">selectGoalsituationAll</result>
+		</action>
+	</package>
+</struts>    

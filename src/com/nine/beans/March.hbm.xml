@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+	<class name="com.nine.beans.March" table="march" catalog="football">
+		<id name="id" type="int">
+			<column name="id" length="20" />
+			<generator class="native" />
+		</id>
+		<property name="hometeam" type="string">
+			<column name="hometeam" length="20" />
+		</property>
+		<property name="visteam" type="string">
+			<column name="visteam" length="20" />
+		</property>
+		<property name="datetime" type="string">
+			<column name="datetime" length="20" />
+		</property>
+		<property name="competition_site" type="string">
+			<column name="competition_site" length="20" />
+		</property>
+		<property name="hometeam_score" type="int">
+			<column name="hometeam_score" length="20" />
+		</property>
+		<property name="visteam_score" type="int">
+			<column name="visteam_score" length="20" />
+		</property>
+	</class>
+</hibernate-mapping>

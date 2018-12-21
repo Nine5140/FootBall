@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+#help_page{
+	background-repeat:no-repeat;
+}
+
+#help_content{
+	margin: 40px 80px;
+}
+
+#help_content p{
+	margin: 4px;
+	font-size: 20px;
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+	<class name="com.nine.beans.Player" table="player" catalog="football">
+		<id name="player_id" type="int">
+			<column name="player_id" length="20" />
+			<generator class="native" />
+		</id>
+		<property name="player_name" type="string">
+			<column name="player_name" length="20" />
+		</property>
+		<property name="player_num" type="int">
+			<column name="player_num" length="20" />
+		</property>
+		<property name="player_height" type="int">
+			<column name="player_height" length="20" />
+		</property>
+		<property name="player_weight" type="int">
+			<column name="player_weight" length="20" />
+		</property>
+		<property name="player_bir" type="string">
+			<column name="player_bir" length="20" />
+		</property>
+		<property name="position" type="string">
+			<column name="position" length="20" />
+		</property>
+		<property name="club" type="string">
+			<column name="club" length="20" />
+		</property>
+		<property name="state" type="string">
+			<column name="state" length="20" />
+		</property>
+		<many-to-one name="team" cascade="none" class="com.nine.beans.Team"
+			column="tno"></many-to-one>
+	</class>
+</hibernate-mapping>
